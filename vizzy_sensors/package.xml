@@ -29,6 +29,7 @@
   <build_depend>sensor_msgs</build_depend>
   <build_depend>tf</build_depend>
   <build_depend>roslaunch</build_depend>
+  <build_depend>serial</build_depend>
 
   <run_depend>camera1394</run_depend>
   <run_depend>depthimage_to_laserscan</run_depend>
@@ -48,6 +49,7 @@
   <run_depend>sensor_msgs</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>tf2_ros</run_depend>
+  <run_depend>serial</run_depend>
 
   <export>
     <filters plugin="${prefix}/vizzy_sensors_plugins.xml"/>

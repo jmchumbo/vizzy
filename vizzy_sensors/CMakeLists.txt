@@ -23,19 +23,27 @@ catkin_package(
     pcl_ros
     sensor_msgs
     tf
+    serial
   INCLUDE_DIRS
     include
   LIBRARIES
     vizzy_sensors_filters
 )
 
-include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(include ${CMAKE_INSTALL_PREFIX}/include ${catkin_INCLUDE_DIRS} )
 
 
 ## Declare a cpp executable
 
 
 add_library(vizzy_sensors_filters src/vizzy_sensors_filters.cpp)
+add_library(vizzy_battery_monitor_interface src/VoltageCurrentSerialInterface.cpp)
+target_link_libraries(vizzy_battery_monitor_interface 
+${Boost_LIBRARIES} 
+  ${catkin_LIBRARIES}
+  ${CMAKE_INSTALL_PREFIX}/lib
+)
+#add_executable(battery_monitor_example src/VoltageCurrentSerialInterface.cpp)
 target_link_libraries(vizzy_sensors_filters 
   ${Boost_LIBRARIES} 
   ${catkin_LIBRARIES}
