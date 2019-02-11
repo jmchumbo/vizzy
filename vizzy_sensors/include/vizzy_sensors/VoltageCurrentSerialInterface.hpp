@@ -44,7 +44,6 @@ class VoltageCurrentSerialInterface
         string test_string(1,' ');
         my_serial->flushInput();
         size_t bytes_wrote = my_serial->write(test_string);
-	int count =0;
         string result = my_serial->read(29);
         firmware_version.resize(25);
         if (result[0]==test_string[0]){
@@ -75,6 +74,7 @@ class VoltageCurrentSerialInterface
             if (checksum == bytesSum){
                 voltage = (buffer[1]*0x0100+ buffer[2]*0x0001)/100.0;
                 current = (buffer[3]*0x0100+ buffer[4]*0x0001)/100.0;
+                return 0;
             }
             else{
              return -1;
