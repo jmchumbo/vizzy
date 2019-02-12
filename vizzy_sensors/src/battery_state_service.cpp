@@ -66,6 +66,8 @@ int main(int argc, char **argv)
     charged_voltage_threshold = atof(argv[2]);
     good_voltage_threshold = atof(argv[3]);
     low_battery_threshold = atof(argv[4]);
+    cout << "Port: " << *sensor_port << " Charged threshold: " << charged_voltage_threshold 
+        << " Good voltage threshold: " << good_voltage_threshold << " Low battery threshold: " << low_battery_threshold << endl;
     ros::ServiceServer service = n.advertiseService("battery_state", query_state);
     ROS_INFO("Ready to check the Kokam battery state.");
     ros::spin();

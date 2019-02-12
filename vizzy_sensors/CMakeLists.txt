@@ -4,6 +4,7 @@ project(vizzy_sensors)
 
 find_package(catkin REQUIRED
   COMPONENTS
+    roscpp
     laser_filters
     message_generation
     nodelet
@@ -12,7 +13,9 @@ find_package(catkin REQUIRED
     roscpp
     roslint
     sensor_msgs
-    tf)
+    tf
+    vizzy_msgs
+    )
 
 catkin_package(
   CATKIN_DEPENDS
@@ -37,6 +40,11 @@ include_directories(include ${CMAKE_INSTALL_PREFIX}/include ${catkin_INCLUDE_DIR
 
 
 add_library(vizzy_sensors_filters src/vizzy_sensors_filters.cpp)
+target_link_libraries(vizzy_sensors_filters 
+  ${Boost_LIBRARIES} 
+  ${catkin_LIBRARIES}
+)
+
 add_library(vizzy_battery_monitor_interface src/VoltageCurrentSerialInterface.cpp)
 target_link_libraries(vizzy_battery_monitor_interface 
 ${Boost_LIBRARIES} 
@@ -44,9 +52,32 @@ ${Boost_LIBRARIES}
   ${CMAKE_INSTALL_PREFIX}/lib
 )
 #add_executable(battery_monitor_example src/VoltageCurrentSerialInterface.cpp)
-target_link_libraries(vizzy_sensors_filters 
+
+add_executable(battery_state_service src/battery_state_service.cpp)
+
+target_link_libraries(battery_state_service 
   ${Boost_LIBRARIES} 
   ${catkin_LIBRARIES}
+  vizzy_battery_monitor_interface
+  ${CMAKE_INSTALL_PREFIX}/lib/libserial.so
+)
+
+add_executable(battery_charging_state_service src/battery_charging_state_service.cpp)
+
+target_link_libraries(battery_charging_state_service 
+  ${Boost_LIBRARIES} 
+  ${catkin_LIBRARIES}
+  vizzy_battery_monitor_interface
+  ${CMAKE_INSTALL_PREFIX}/lib/libserial.so
+)
+
+add_executable(kokam_power_publisher src/kokam_power_publisher.cpp)
+
+target_link_libraries(kokam_power_publisher 
+  ${Boost_LIBRARIES} 
+  ${catkin_LIBRARIES}
+  vizzy_battery_monitor_interface
+  ${CMAKE_INSTALL_PREFIX}/lib/libserial.so
 )
 
 # Install the plugin and the plugin description

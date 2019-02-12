@@ -25,12 +25,14 @@ add_message_files(
   FILES
   Tactile.msg
   TacVector.msg
+  KokamBatteryPower.msg
 )
 
 add_service_files(
   DIRECTORY srv
   FILES
   BatteryState.srv
+  BatteryChargingState.srv
 )
 
 generate_messages(

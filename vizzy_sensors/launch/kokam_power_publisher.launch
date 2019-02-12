@@ -1,0 +1,6 @@
+<launch>
+  <arg name="port" value="/dev/ttyUSB1" />
+  <arg name="rate" value="20" />
+  <node name="kokam_power_publisher_node" pkg="vizzy_sensors" type="kokam_power_publisher" 
+  args="$(arg port) $(arg rate)" output="screen"/>
+</launch>
