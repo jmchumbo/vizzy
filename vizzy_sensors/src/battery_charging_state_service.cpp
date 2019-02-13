@@ -39,7 +39,6 @@ bool query_charging_state(vizzy_msgs::BatteryChargingStateRequest &req,
                  vizzy_msgs::BatteryChargingStateResponse &res)
 {
     res.battery_charging_state = battery_charging_state();
-    ROS_INFO("sending back response: [%ld]", res.battery_charging_state);
     return true;
 }
 

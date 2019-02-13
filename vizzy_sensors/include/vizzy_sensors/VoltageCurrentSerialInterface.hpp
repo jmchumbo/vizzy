@@ -23,7 +23,7 @@ class VoltageCurrentSerialInterface
     double voltage;
     double current;
     serial::Serial *my_serial;
-    unsigned long baud = 115200;
+    static const unsigned long baud = 115200;
     public:
     bool initComm(string port){
         my_serial = new serial::Serial(port, baud, serial::Timeout::simpleTimeout(1000));
