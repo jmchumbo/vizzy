@@ -38,7 +38,7 @@ int main(int argc, char **argv)
             ros::Time my_time_ = ros::Time::now();
             std_msgs::Time my_time;
             msg.time_stamp.nsec = my_time_.nsec;
-            msg.time_stamp.sec = my_time_.nsec;
+            msg.time_stamp.sec = my_time_.sec;
             chatter_pub.publish(msg);
         }
 
