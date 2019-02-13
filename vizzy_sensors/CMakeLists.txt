@@ -49,7 +49,7 @@ add_library(vizzy_battery_monitor_interface src/VoltageCurrentSerialInterface.cp
 target_link_libraries(vizzy_battery_monitor_interface 
 ${Boost_LIBRARIES} 
   ${catkin_LIBRARIES}
-  ${CMAKE_INSTALL_PREFIX}/lib
+  ${CMAKE_INSTALL_PREFIX}/lib/libserial.so
 )
 #add_executable(battery_monitor_example src/VoltageCurrentSerialInterface.cpp)
 
